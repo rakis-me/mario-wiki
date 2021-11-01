@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<%- include('../head') %>
+
+  <body>
+    <header>
+      <%- include('../nav') %>
+        <h1>Mario Wiki</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Add Mario Game</h2>
+        <p>Complete this form to record a Mario Game in the Mario Wiki</p>
+        <form method="POST" action="/games/create">
+          <input type="hidden" name="_csrf" value="<%= csrf %>">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" value="<%= name %>" />
+            <small>Enter the name of the Mario Game</small>
+          </div>
+          <div>
+            <label for="description">Description</label>
+            <textarea id="description" name="description"><%= description %></textarea>
+            <small>Enter description of game</small>
+          </div>
+          <div>
+            <label for="published">Published</label>
+            <input type="text" id="published" name="published" value="<%= published %>" />
+          </div>
+          <div>
+            <button type="submit">Submit Game</button>
+            <a href="/games"><b>Cancel</b></a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "mario-wiki",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "repository": "https://github.com/rakis-me/mario-wiki.git",
+  "author": "Tom Wilson <twilson63@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "cuid": "^2.1.8",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "hyper-connect": "^0.0.14",
+    "node-fetch": "^3.0.0",
+    "zod": "^3.11.6"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.14"
+  },
+  "scripts": {
+    "seed": "node -r ./scripts/register.cjs -r dotenv/config scripts/seed.js",
+    "dev": "nodemon -r ./scripts/register.cjs -r dotenv/config server.js"
+  },
+  "nodemonConfig": {
+    "ext": "*.js, *.json"
+  }
+}

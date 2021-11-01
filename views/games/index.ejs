@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<%- include('../head') %>
+
+  <body>
+    <header>
+      <%- include('../nav') %>
+        <h1>Mario Wiki</h1>
+    </header>
+    <main>
+      <h2>Games</h2>
+      <section style="justify-content: end;">
+        <a href="/games/new"><b>Add Game</b></a>
+      </section>
+      <section>
+        <% games.map(game=> { %>
+          <aside>
+            <h3>
+              <%= game.name %>
+            </h3>
+            <p>
+              <%= game.description %>
+            </p>
+            <p>Published: <%= game.published %>
+            </p>
+          </aside>
+          <% }) %>
+      </section>
+    </main>
+  </body>
+
+</html>
