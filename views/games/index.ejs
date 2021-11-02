@@ -14,6 +14,7 @@
       </section>
       <section>
         <% games.map(game=> { %>
+          <a href="/games/<%= game.id %>">
           <aside>
             <h3>
               <%= game.name %>
@@ -24,6 +25,7 @@
             <p>Published: <%= game.published %>
             </p>
           </aside>
+          </a>
           <% }) %>
       </section>
     </main>

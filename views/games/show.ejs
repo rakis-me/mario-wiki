@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <%- include('../head') %>
+    <body>
+        <header>
+            <%- include('../nav') %>
+            <h1>Mario Wiki</h1>
+        </header>
+        <main>
+            <section>
+                <h2><%= game.name %></h2>
+                <p><%= game.description %></p>
+                <p>Published: <%= game.published %></p>
+                <a href="/games/<%= game.id %>/edit"><b>Edit</b></a>
+                <button id="delete">Remove</button>
+            </section>
+        </main>
+        <script>
+            const btn = document.getElementById('delete')
+            btn.addEventListener('click', async e => {
+                if (confirm('are you sure?')) {
+                    const res = await fetch(window.location.pathname, {
+                        method: 'DELETE'
+                    })
+                    if (res.ok) {
+                        window.location.href = '/games'
+                    } else {
+                        alert(res.statusText + await res.text())
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

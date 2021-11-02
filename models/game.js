@@ -24,6 +24,16 @@ export async function add(game) {
   }
 }
 
+export async function get(id) {
+  const game = await hyper.data.get(id) 
+  const { success, data, error } = validate(game)
+  if (success) {
+    return data
+  } else {
+    return error
+  }
+}
+
 export async function list() {
   // call hyper to get a list
   const result = await hyper.data.query({ type: 'game' })
@@ -31,5 +41,18 @@ export async function list() {
     return result.docs
   } else {
     return []
+  }
+}
+
+export async function remove(id) {
+  return await hyper.data.remove(id) 
+}
+
+export async function update(id, game) {
+  const { success, data, error } = validate(game)
+  if (success) {
+    return await hyper.data.update(id, data)
+  } else {
+    return { ok: false, error }
   }
 }
