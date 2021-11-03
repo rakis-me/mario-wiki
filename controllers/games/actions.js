@@ -1,17 +1,29 @@
 import * as games from '../../models/game.js'
 import cuid from 'cuid'
 
-export async function create(req, res) {
+export async function createOrUpdate(req, res) {
   const { name, description, published } = req.body
-  const result = await games.add({
-    id: 'game-' + cuid(),
-    type: 'game',
-    name,
-    description,
-    published
-  })
+  let result
+  if (req.body.id) {
+    result = await games.update(req.body.id, {
+      id: req.body.id,
+      type: 'game',
+      name,
+      description,
+      published
+    })
+  } else {
+    result = await games.add({
+      id: 'game-' + cuid(),
+      type: 'game',
+      name,
+      description,
+      published
+    })
+  }
+   
   if (result.ok) {
-    res.render('games/success', { title: 'Mario Wiki - Add Game Success' })
+    res.render('games/success', { title: 'Mario Wiki - Add/Update Game Success' })
   } else {
     res.setHeader('content-type', 'text/html')
     res.send('<h1>Error could not save game</h1>')
@@ -28,14 +40,4 @@ export async function remove(req, res) {
   }
 }
 
-export async function update(req, res) {
-  const id = req.params.id
-  const game = req.body 
-  const result = await games.update(id, game) 
-  if (result.ok ) {
-    res.render('games/success', { title: 'Mario Wiki - Successfully Updated!'})
-  } else {
-    res.setHeader('content-type', 'text/html')
-    res.send('<h1>Error could not save game</h1>')
-  }
-}
+

@@ -19,11 +19,10 @@ app.set('view engine', 'ejs')
 
 app.get('/games', games)
 app.get('/games/new', csrfProtection, gameForm)
-app.post('/games/create', parseForm, csrfProtection, gameActions.create)
+app.post('/games/create', parseForm, csrfProtection, gameActions.createOrUpdate)
 app.get('/games/:id', gameShow)
 app.delete('/games/:id', gameActions.remove)
 app.get('/games/:id/edit', csrfProtection, gameForm)
-app.put('/games/:id', parseForm, csrfProtection, gameActions.update)
 
 app.get('/', home)
 

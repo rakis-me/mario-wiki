@@ -13,6 +13,9 @@
         <p>Complete this form to record a Mario Game in the Mario Wiki</p>
         <form method="POST" action="/games/create">
           <input type="hidden" name="_csrf" value="<%= csrf %>">
+          <% if (id) { %>
+          <input type="hidden" name="id" value="<%= id %>">
+          <% } %>
           <div>
             <label for="name">Name</label>
             <input id="name" name="name" type="text" value="<%= name %>" />
